@@ -1,5 +1,3 @@
-console.log("Welcome to ROCK PAPER SCISSORS !!!!!!!");
-
 let humanScore =0;
 let computerScore =0;
 
@@ -61,10 +59,19 @@ let playRound = (humanChoice,computerChoice) =>{
         }
     }
     console.log(`Your Choice : ${humanChoice}\nMy Choice : ${computerChoice}`);
-    console.log(`Current Scores\nYour Score : ${humanScore}\n
-        My Score : ${computerScore}\n`);
+    console.log(`Current Scores\nYour Score : ${humanScore}\nMy Score : ${computerScore}\n`);
 }
 
-let humanSelection = getHumanChoice();
-let computerSelection = getComputerChoice();
-playRound(humanSelection,computerSelection);
+let playGame = () =>{
+    let roundCount = 1;
+    while(roundCount<=5){
+    console.log(`Round ${roundCount} of 5`);
+    const humanSelection = getHumanChoice();
+    const computerSelection = getComputerChoice();
+    playRound(humanSelection, computerSelection);
+    roundCount++;  
+    }
+
+}
+
+playGame();
