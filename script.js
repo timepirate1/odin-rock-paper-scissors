@@ -16,55 +16,70 @@ const results = document.querySelector('#results')
 let playRound = (humanChoice) =>{
   
     computerChoice = getComputerChoice();
-    
+    if ( humanScore<5||computerScore<5){
     if (humanChoice==='rock'){
         if(computerChoice==='scissor'){
             humanScore++;
-            results.textContent= `You win !\n Rock beats Scissor \n Your Score ${humanScore} \n  My score ${computerScore}`
+            results.textContent= `Rock beats Scissor \n Your Score ${humanScore} \n  My score ${computerScore}`
         }
        else if (computerChoice==='paper'){
               computerScore++;
-              results.textContent =`You lose !\n Paper beats Rock \n Your Score ${humanScore} \n My score ${computerScore}`
+              results.textContent =`Paper beats Rock \n Your Score ${humanScore} \n My score ${computerScore}`
         }
        else if (computerChoice==='rock'){
             results.textContent = `A Draw !\n Your Score ${humanScore} \n My score ${computerScore}`
         }
-    }   else  if (humanChoice==='paper'){
+    } 
+    else  if (humanChoice==='paper'){
         
         if(computerChoice==='rock'){
             humanScore++;
-            results.textContent =`You win !\n Paper beats Rock \n Your Score ${humanScore} \n ${computerScore}`
+            results.textContent =`Paper beats Rock \n Your Score ${humanScore} \n My Score ${computerScore}`
         }
        else if (computerChoice==='scissor'){
               computerScore++;
-              results.textContent =`You lose !\n Scissor beats Paper \n Your Score ${humanScore} \n ${computerScore}`
+              results.textContent =`Scissor beats Paper \n Your Score ${humanScore} \n My Score ${computerScore}`
         }
         else if (computerChoice==='paper'){
-            results.textContent = `A Draw !\n Your Score ${humanScore} \n ${computerScore}`
+            results.textContent = `A Draw !\n Your Score ${humanScore} \n My Score${computerScore}`
         }
     } else  {
     
         if(computerChoice==='paper'){
             humanScore++;
-            results.textContent = `You win !\n Scissor beats Paper \n Your Score ${humanScore} \n ${computerScore}`
+            results.textContent = `Scissor beats Paper \n Your Score ${humanScore} \n My Score ${computerScore}`
         }   
       else  if (computerChoice==='rock'){
               computerScore++;
-              results.textContent = `You lose !\n Rock beats Scissors \n Your Score ${humanScore} \n ${computerScore}`
+              results.textContent = `Rock beats Scissors \n Your Score ${humanScore} \n My Score${computerScore}`
         }
       else  if (computerChoice==='scissor'){
-        results.textContent =`A Draw !\n Your Score ${humanScore} \n ${computerScore}`
+        results.textContent =`A Draw !\n Your Score ${humanScore} \n My Score ${computerScore}`
         }
     }
-    // console.log(`Your Choice : ${humanChoice}\nMy Choice : ${computerChoice}`);
-    // console.log(`Current Scores\nYour Score : ${humanScore}\nMy Score : ${computerScore}\n`);
+    }
+    
+
 }
 
-//taking input from user
-const rock = document.querySelector('#rock');
-const paper = document.querySelector('#paper');
-const scissor = document.querySelector('#scissor');
+function disableButtons() {
+    document.querySelector('#rock').disabled = true;
+    document.querySelector('#paper').disabled = true;
+    document.querySelector('#scissor').disabled = true;
+}
 
-rock.addEventListener('click',()=>playRound('rock'));
-paper.addEventListener('click', () => playRound('paper'));
-scissor.addEventListener('click', () => playRound('scissor'));
+let playGame = (humanChoice) =>{
+    playRound(humanChoice)
+if (humanScore===5){
+    results.innerHTML = '<h1>YOU WIN !!!! ;) </h1><p>refresh to play again</p>';
+    disableButtons();  
+}
+else if (computerScore===5){
+    results.innerHTML = '<h1>I WIN !!!!! HAHAHAAHAHAHAHA</h1><p>refresh to play again</p>';
+    disableButtons();
+
+}
+}
+document.querySelector('#rock').addEventListener('click', () => playGame('rock'));
+document.querySelector('#paper').addEventListener('click', () => playGame('paper'));
+document.querySelector('#scissor').addEventListener('click', () => playGame('scissor'))
