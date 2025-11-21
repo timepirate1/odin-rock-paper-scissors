@@ -1,11 +1,7 @@
 let humanScore =0;
 let computerScore =0;
 
-let getHumanChoice = () =>{
-    let humanChoice =prompt("Enter your input");
-    return humanChoice.toLowerCase();   
-};
-
+//fetching computer's choice
 let getComputerChoice = ()=> {
     let computerDraw = Math.random();
     let computerChoice ;
@@ -15,9 +11,11 @@ let getComputerChoice = ()=> {
     return computerChoice;
 }
 
-let playRound = (humanChoice,computerChoice) =>{
-   
-    
+
+//logic for rock paper scissor
+let playRound = (humanChoice) =>{
+  
+    computerChoice = getComputerChoice;
     
     if (humanChoice==='rock'){
         if(computerChoice==='scissor'){
@@ -62,16 +60,11 @@ let playRound = (humanChoice,computerChoice) =>{
     console.log(`Current Scores\nYour Score : ${humanScore}\nMy Score : ${computerScore}\n`);
 }
 
-let playGame = () =>{
-    let roundCount = 1;
-    while(roundCount<=5){
-    console.log(`Round ${roundCount} of 5`);
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);
-    roundCount++;  
-    }
+//taking input from user
+const rock = document.querySelector('#rock');
+const paper = document.querySelector('#paper');
+const scissor = document.querySelector('#scissor');
 
-}
-
-playGame();
+rock.addEventListener('click',()=>playRound('rock'));
+paper.addEventListener('click', () => playRound('paper'));
+scissor.addEventListener('click', () => playRound('scissor'));
